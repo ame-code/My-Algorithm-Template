@@ -1,2 +1,5 @@
-*.vscode
-*.exe
+# VScode配置
+.vscode/
+
+# 编译输出
+output/
