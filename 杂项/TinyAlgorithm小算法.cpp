@@ -1,30 +1,45 @@
-#include<concepts>
+#include<bits/stdc++.h>
 // using namespace std;
 namespace TinyAlgorithm {
-    template<std::integral T>
-    void swap(T& a,T& b) {
-        a ^= b ^= a ^= b;
-    }
-
     template<typename T>
     void setMin(T &a, T &b) {
-        a = a < b ? a : b;
-        b = a;
+        b = a = (a < b ? a : b);
     }
 
     template<typename T>
     void setMax(T &a, T &b) {
-        a = a > b ? a : b;
-        b = a;
+        b = a = (a > b ? a : b);
+    }
+    auto a = std::array<int, 3>();
+    template<typename T>
+    T& min(T& a, T& b) {
+        return a < b ? a : b;
+    }
+
+    template<typename T>
+    T& max(T& a, T& b) {
+        return a > b ? a : b;
     }
 
     template<std::integral T>
-    void OppositeNumber(T &a) {
-        a = ~a + 1;
+    T abs(const T &a) {
+        return (a ^ (~(a >> 31) + 1) + (a >> 31));
     }
 
-    template<std::integral T>
-    T&& abs(const T &a) {
-        return move(a^(~(a>>31)+1)+(a>>31));
+    template<typename T, typename... Args>
+    auto makeVector(size_t n, Args... args) {
+        if constexpr (sizeof...(args) == 1) {
+            return std::vector<T>(n, args...);
+        } else {
+            return std::vector<T>(n, makeVector<T>(args...));
+        }
+    }
+    template<typename T, typename... Args>
+    auto makeArray(size_t n, Args... args) {
+        if constexpr (sizeof...(args) == 1) {
+            return std::array<T, n>();
+        } else {
+            return std::array<makeArray<T>, n>();
+        }
     }
 };
