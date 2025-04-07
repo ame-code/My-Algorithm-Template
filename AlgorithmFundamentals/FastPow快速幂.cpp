@@ -1,3 +1,5 @@
+#pragma once
+
 // 模意义下快速幂
 int FastPow(int base, int index,int mod)
 {

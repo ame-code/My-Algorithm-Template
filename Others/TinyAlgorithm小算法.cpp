@@ -10,7 +10,6 @@ namespace TinyAlgorithm {
     void setMax(T &a, T &b) {
         b = a = (a > b ? a : b);
     }
-    auto a = std::array<int, 3>();
     template<typename T>
     T& min(T& a, T& b) {
         return a < b ? a : b;
@@ -34,6 +33,7 @@ namespace TinyAlgorithm {
             return std::vector<T>(n, makeVector<T>(args...));
         }
     }
+    
     template<typename T, typename... Args>
     auto makeArray(size_t n, Args... args) {
         if constexpr (sizeof...(args) == 1) {
