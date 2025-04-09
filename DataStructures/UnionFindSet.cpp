@@ -21,7 +21,7 @@ public:
     UnionFindSet(UnionFindSet&&) = default;
     UnionFindSet& operator=(UnionFindSet&&) = default;
 
-    int root(int x) {
+    int root(size_t x) {
         assert(x >= 0 && x < parent.size());
         return parent[x] = (parent[x] == x ? x : root(parent[x]));
     }
