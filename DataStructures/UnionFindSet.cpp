@@ -9,7 +9,7 @@ using uint128 = __uint128_t;
 class UnionFindSet
 {
 private:
-    std::vector<int> parent,rank;
+    std::vector<size_t> parent,rank;
 public:
     UnionFindSet() = delete;
     explicit UnionFindSet(size_t n):parent(n, 0),rank(n, 0){
@@ -22,7 +22,7 @@ public:
     UnionFindSet& operator=(UnionFindSet&&) = default;
 
     int root(size_t x) {
-        assert(x >= 0 && x < parent.size());
+        assert(x < parent.size());
         return parent[x] = (parent[x] == x ? x : root(parent[x]));
     }
 
