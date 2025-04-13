@@ -44,12 +44,30 @@ public:
         return *this;
     }
     // 坐标乘一个整数
-    Coordinate<Integer> operator*(const Integer& scalar) const {
+    Coordinate<Integer> operator*(const Integer scalar) const {
         return {x * scalar, y * scalar};
     }
     // 坐标乘等于整数
     Coordinate<Integer>& operator*=(const Integer& scalar) {
         this->x *= scalar, this->y *= scalar;
+        return *this;
+    }
+    // 坐标除以一个整数
+    Coordinate<Integer> operator/(const Integer num) const {
+        return {x / num, y / num};
+    }
+    // 坐标除等于一个整数
+    Coordinate<Integer>& operator/=(const Integer num) {
+        this->x /= num, this->y /= num;
+        return *this;
+    }
+    // 坐标取余于一个整数
+    Coordinate<Integer> operator%(const Integer num) const {
+        return {x % num, t % num};
+    }
+    // 坐标取余等于一个整数
+    Coordinate<Integer> operator%=(const Integer num) {
+        this->x %= num, this->y %= num;
         return *this;
     }
     // 判断坐标是否相等
