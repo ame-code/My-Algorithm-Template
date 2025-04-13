@@ -79,10 +79,17 @@ public:
         return x == coor.x ? y < coor.y : x < coor.x;
     }
     // 大于运算符(字典序大小)
-    bool operator>(const Coordinate&) const {
+    bool operator>(const Coordinate& coor) const {
         return x == coor.x ? y > coor.y : x > coor.x;
     }
-
+    // 小于等于运算符
+    bool operator<=(const Coordinate& coor) const {
+        return x == coor.x ? y <= coor.y : x <= coor.x;
+    }
+    // 大于等于运算符
+    bool operator>=(const Coordinate& coor) const {
+        return x == coor.x ? y >= coor.y : x >= coor.x;
+    }
     // 静态成员函数部分
     // 两点间的距离
     static double distance(const Coordinate& coor1, const Coordinate& coor2) {
@@ -114,6 +121,10 @@ public:
     }
 
     // 部分功能的实现
+    void setPos(int x, int y) {
+        this->x = x;
+        this->y = y;
+    }
     // 判断是否越界
     bool notOutEdge() const noexcept {
         return x >= xAxisLowBound && x <= xAxisUpBound && y >= yAxisLowBound && y <= yAxisUpBound;
