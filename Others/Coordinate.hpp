@@ -196,20 +196,31 @@ public:
     Coordinate operator%(T num) const {
         return coor % num;
     }
+    Coordinate operator%(const Coordinate& other) const {
+        return coor % other.coor;
+    }
     Coordinate& operator+=(const Coordinate& other) {
         coor += other;
         return *this;
     }
     Coordinate& operator-=(const Coordinate& other) {
-        coor += other;
+        coor -= other;
         return *this;
     }
     Coordinate& operator*=(T num) {
-        coor += num;
+        coor *= num;
         return *this;
     }
     Coordinate& operator/=(T num) {
-        coor += num;
+        coor /= num;
+        return *this;
+    }
+    Coordinate& operator%=(T num) {
+        coor %= num;
+        return *this;
+    }
+    Coordinate& operator%=(const Coordinate& other) {
+        coor %= other.coor;
         return *this;
     }
     Coordinate operator^(T num) const {
