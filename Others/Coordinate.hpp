@@ -182,10 +182,10 @@ public:
 
     // 重载运算符
     Coordinate operator+(const Coordinate& other) const {
-        return coor + other;
+        return coor + other.coor;
     }
     Coordinate operator-(const Coordinate& other) const {
-        return coor - other;
+        return coor - other.coor;
     }
     Coordinate operator*(T num) const {
         return coor * num;
@@ -200,7 +200,7 @@ public:
         return coor % other.coor;
     }
     Coordinate& operator+=(const Coordinate& other) {
-        coor += other;
+        coor += other.coor;
         return *this;
     }
     Coordinate& operator-=(const Coordinate& other) {
