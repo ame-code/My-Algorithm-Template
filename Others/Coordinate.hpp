@@ -70,10 +70,20 @@ public:
         Coor operator%(T num) const {
             return Coor(x % num, y % num);
         }
+        // %
+        Coor operator%(const Coor& coor) const {
+            return Coor(x % coor.x, y % coor.y);
+        }
         // %=
         Coor& operator%=(T num) {
             this->x %= num;
             this->y %= num;
+            return *this;
+        }
+        // %=
+        Coor& operator%=(const Coor& coor) {
+            this->x %= coor.x;
+            this->y %= coor.y;
             return *this;
         }
         Coor operator&(T num) const {
