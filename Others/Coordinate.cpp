@@ -1,4 +1,13 @@
-#include<bits/stdc++.h>
+#pragma once
+#ifndef COORDINATE_HEADER
+#define COORDINATE_HEADER
+
+#include<concepts>
+#include<utility>
+#include<cmath>
+#include<vector>
+#include<ostream>
+#include<format>
 
 template<std::integral T>
 class Coordinate {
@@ -408,3 +417,4 @@ template<std::integral T>
 Coordinate<T>::Coor Coordinate<T>::lowerBound(0,0);
 template<std::integral T>
 Coordinate<T>::Coor Coordinate<T>::upperBound(INT_MAX, INT_MAX);
+#endif
