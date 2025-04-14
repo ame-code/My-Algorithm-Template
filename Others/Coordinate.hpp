@@ -27,7 +27,7 @@ public:
 
         // 重载运算符
         // +
-        Coor operator+(const Coor& coor) {
+        Coor operator+(const Coor& coor) const {
             return Coor(x + coor.x, y + coor.y);
         }
         // +=
@@ -37,7 +37,7 @@ public:
             return *this;
         }
         // -
-        Coor operator-(const Coor& coor) {
+        Coor operator-(const Coor& coor) const {
             return Coor(x - coor.x, y - coor.y);
         }
         // -=
@@ -47,7 +47,7 @@ public:
             return *this;
         }
         // *
-        Coor operator*(T num) {
+        Coor operator*(T num) const {
             return Coor(x * num, y * num);
         }
         // *= 
@@ -57,7 +57,7 @@ public:
             return *this;
         }
         // /
-        Coor operator/(T num) {
+        Coor operator/(T num) const {
             return Coor(x / num, y / num);
         }
         // /=
@@ -67,7 +67,7 @@ public:
             return *this;
         }
         // %
-        Coor operator%(T num) {
+        Coor operator%(T num) const {
             return Coor(x % num, y % num);
         }
         // %=
@@ -76,7 +76,7 @@ public:
             this->y %= num;
             return *this;
         }
-        Coor operator&(T num) {
+        Coor operator&(T num) const {
             return Coor(x & num, y & num);
         }
         Coor& operator&=(T num) {
@@ -84,7 +84,7 @@ public:
             this->y &= num;
             return *this;
         }
-        Coor operator|(T num) {
+        Coor operator|(T num) const {
             return Coor(x | num, y | num);
         }
         Coor& operator|=(T num) {
@@ -92,7 +92,7 @@ public:
             this->y |= num;
             return *this;
         }
-        Coor operator^(T num) {
+        Coor operator^(T num) const {
             return Coor(x ^ num, y ^ num);
         }
         Coor& operator^=(T num) {
@@ -100,7 +100,7 @@ public:
             this->y ^= num;
             return *this;
         }
-        Coor operator>>(T num) {
+        Coor operator>>(T num) const {
             return Coor(x >> num, y >> num);
         }
         Coor& operator>>=(T num) {
@@ -108,7 +108,7 @@ public:
             this->y >>= num;
             return *this;
         }
-        Coor operator<<(T num) {
+        Coor operator<<(T num) const {
             return Coor(x << num, y << num);
         }
         Coor& operator<<=(T num) {
@@ -250,22 +250,22 @@ public:
         return *this;
     }
     bool operator>(const Coordinate& other) const {
-        return coor > other;
+        return coor > other.coor;
     }
     bool operator<(const Coordinate& other) const {
-        return coor >= other;
+        return coor >= other.coor;
     }
     bool operator>=(const Coordinate& other) const {
-        return coor < other;
+        return coor < other.coor;
     }
     bool operator<=(const Coordinate& other) const {
-        return coor <= other;
+        return coor <= other.coor;
     }
     bool operator==(const Coordinate& other) const {
-        return coor == other;
+        return coor == other.coor;
     }
     bool operator!=(const Coordinate& other) const {
-        return coor != other;
+        return coor != other.coor;
     }
 
     // 静态函数部分
