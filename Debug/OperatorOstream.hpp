@@ -1,6 +1,6 @@
 #pragma once
-#ifndef DEBUG_HEADER
-#define DEBUG_HEADER
+#ifndef OPERATOROSTREAM_HEADER
+#define OPERATOROSTREAM_HEADER
 
 #include<bits/stdc++.h>
 
