@@ -4,6 +4,11 @@
 
 #include <concepts>
 
+// ========================
+// 快速幂
+// 最后修改日期：2025-04-15
+// ========================
+
 namespace aleaf {
     // 循环实现
     template<std::integral INT = int>
