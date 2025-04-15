@@ -12,11 +12,11 @@
 namespace aleaf {
     enum class TrueBinaryInterval{right, left};
 
-    template<TrueBinaryInterval tag, std::integral Int = int, typename FUNC>
-    Int binarySearch(Int l, Int r, Int goal, FUNC check) {
-        Int ret = -1;
+    template<TrueBinaryInterval tag, std::integral INT = int, typename FUNC>
+    INT binarySearch(INT l, INT r, INT goal, FUNC check) {
+        INT ret = -1;
         while (l <= r) {
-            Int mid = l + ((r - l) >> 1);
+            INT mid = l + ((r - l) >> 1);
             if (check(mid, goal)) {
                 ret = mid;
                 if constexpr (tag == TrueBinaryInterval::right) {
