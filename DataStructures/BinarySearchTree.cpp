@@ -1,4 +1,10 @@
-#include<bits/stdc++.h>
+#pragma once
+#ifndef BINARYSEARCHTREE_HEADER
+#define BINARYSEARCHTREE_HEADER
+
+#include<vector>
+#include<climits>
+
 class Tree
 {
 private:
@@ -232,3 +238,5 @@ public:
         return queryNextAchieve(1);
     }
 };
+
+#endif
