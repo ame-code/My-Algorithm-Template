@@ -2,7 +2,7 @@
 
 #include<bits/stdc++.h>
 
-namespace Debug {
+namespace aleaf {
     void initializeRand() {
         srand(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count());
     }
@@ -16,7 +16,9 @@ namespace Debug {
         }
         initializeRand();
         while(true) {
-            system((dataCode + " > data.txt").c_str()), system((ansCode + " < data.txt > ansCode.txt").c_str()), system((myCode + " < data.txt  > myCode.txt").c_str());
+            system((dataCode + " > data.txt").c_str());
+            system((ansCode + " < data.txt > ansCode.txt").c_str());
+            system((myCode + " < data.txt  > myCode.txt").c_str());
             #ifdef __WIN32
             if(system("fc ansCode.txt myCode.txt")) {
                 break;
