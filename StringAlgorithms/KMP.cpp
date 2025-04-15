@@ -1,69 +1,65 @@
-#include <iostream>
+#pragma once
+#ifndef KMP_HEADER
+#define KMP_HEADER
+
 #include <vector>
 #include <string>
-using namespace std;
+#include <string_view>
 
-// 获取模式串的next数组（下标从0开始）
-vector<int> computeNext(const string &pattern) {
-    int m = pattern.size();
-    vector<int> next(m, 0);    // next数组初始化
-    next[0] = -1;              // 初始值为-1（无匹配前缀）
-    int j = 0, k = -1;
-
-    while (j < m - 1) {
-        // 当字符匹配或k回溯到起点时更新next数组
-        if (k == -1 || pattern[j] == pattern[k]) {
-            j++;
-            k++;
-            next[j] = k;       // 当前位置的最长前缀后缀长度
-        } else {
-            k = next[k];       // 不匹配时回溯到前一个最长前缀位置[7,8](@ref)
-        }
+namespace aleaf {
+    namespace KMPType {
+        struct allIndex {};
+        struct firstIndex {};
     }
-    return next;
+
+    std::vector<ssize_t> build_optimized_next(std::string_view pattern) {
+        const size_t m = pattern.size();
+        std::vector<ssize_t> next(m + 1, -1);
+        ssize_t j = 0, k = -1;
+
+        while (j < static_cast<ssize_t>(m)) {
+            if (k == -1 || pattern[j] == pattern[k]) {
+                ++j; ++k;
+                next[j] = (j < static_cast<ssize_t>(m) && pattern[j] == pattern[k]) 
+                        ? next[k] 
+                        : k;
+            } else {
+                k = next[k];
+            }
+        }
+        return next;
+    }
+
+    template<typename Policy>
+    std::vector<size_t> KMP(std::string_view text, std::string_view pattern, size_t start = 0) {
+        std::vector<size_t> matches;
+        const size_t n = text.size();
+        const size_t m = pattern.size();
+
+        if (m == 0 || start > (n > m ? n - m : 0)) 
+            return matches;
+
+        const auto next = build_optimized_next(pattern);
+        size_t i = start;
+        ssize_t j = 0;
+
+        while (i < n) {
+            if (j == -1 || text[i] == pattern[j]) {
+                ++i;
+                ++j;
+            } else {
+                j = next[j];
+            }
+
+            if (j == static_cast<ssize_t>(m)) {
+                matches.push_back(i - m);
+                if constexpr (std::is_same_v<Policy, KMPType::firstIndex>) 
+                    break;
+                j = next[j];
+            }
+        }
+        return matches;
+    }
 }
 
-// KMP主算法（返回所有匹配的起始位置）
-vector<int> kmpSearch(const string &text, const string &pattern) {
-    vector<int> matches;
-    int n = text.size(), m = pattern.size();
-    if (m == 0 || n < m) return matches;
-
-    vector<int> next = computeNext(pattern); // 预计算next数组[1,10](@ref)
-    int i = 0, j = 0;
-
-    while (i < n) {
-        // 当字符匹配或j回溯到起点时移动指针
-        if (j == -1 || text[i] == pattern[j]) {
-            i++;
-            j++;
-        } else {
-            j = next[j];       // 根据next数组跳过无效匹配[3,5](@ref)
-        }
-
-        // 找到完全匹配的子串
-        if (j == m) {
-            matches.push_back(i - m);
-            j = next[j - 1];   // 继续寻找下一个可能的匹配[11](@ref)
-        }
-    }
-    return matches;
-}
-
-// 测试示例
-int main() {
-    system("chcp 65001 > nul");
-
-    string text = "ABABDABACDABABCABAB";
-    string pattern = "ABABCABAB";
-    
-    vector<int> result = kmpSearch(text, pattern);
-    if (!result.empty()) {
-        cout << "匹配起始位置：";
-        for (int pos : result) cout << pos << " ";
-    } else {
-        cout << "未找到匹配项";
-    }
-    system("pause");
-    return 0;
-}
+#endif
