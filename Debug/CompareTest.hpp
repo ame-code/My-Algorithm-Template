@@ -1,6 +1,9 @@
 #pragma once
+#ifndef COMPARETEST_HEADER
+#define COMPARETEST_HEADER
 
-#include<bits/stdc++.h>
+#include<cstdlib>
+#include<chrono>
 
 namespace aleaf {
     void initializeRand() {
@@ -31,3 +34,5 @@ namespace aleaf {
         }
     }
 }
+
+#endif
