@@ -1,10 +1,8 @@
-#include<bits/stdc++.h>
+#pragma once
+#ifndef UNIONFINDSET_HEADER
+#define UNIONFINDSET_HEADER
 
-using int64 = long long;
-using uint64 = unsigned long long;
-
-using int128 = __int128_t;
-using uint128 = __uint128_t;
+#include<vector>
 
 class UnionFindSet
 {
@@ -21,8 +19,7 @@ public:
     UnionFindSet(UnionFindSet&&) = default;
     UnionFindSet& operator=(UnionFindSet&&) = default;
 
-    int root(size_t x) {
-        assert(x < parent.size());
+    size_t root(size_t x) {
         return parent[x] = (parent[x] == x ? x : root(parent[x]));
     }
 
@@ -40,3 +37,5 @@ public:
         }
     }
 };
+
+#endif
