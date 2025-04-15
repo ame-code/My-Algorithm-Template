@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 // using namespace std;
-namespace TinyAlgorithm {
+namespace aleaf {
     template<typename T>
     void setMin(T &a, T &b) {
         b = a = (a < b ? a : b);
@@ -41,5 +41,10 @@ namespace TinyAlgorithm {
         } else {
             return std::array<makeArray<T>, n>();
         }
+    }
+
+    // 没啥可读性版 :)
+    bool LeapYear(int year) {
+        return year % 4 == 0 && (year % 400 == 0 || !(year % 400 !=0 && year % 100 == 0));
     }
 };
