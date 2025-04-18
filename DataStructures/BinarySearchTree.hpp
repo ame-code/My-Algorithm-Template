@@ -5,7 +5,7 @@
 #include<vector>
 #include<climits>
 
-class Tree
+class BinarySearchTree
 {
 private:
     struct node
@@ -201,12 +201,12 @@ private:
         }
     }
 public:
-    Tree(int n): tree(std::vector<node>(n+10,{0, 0, 0, 0, 0})), count(1)
+    BinarySearchTree(int n): tree(std::vector<node>(n+10,{0, 0, 0, 0, 0})), count(1)
     {
         tree[1].value = INT_MIN;
         insert(INT_MAX);
     }
-    Tree() = delete;
+    BinarySearchTree() = delete;
     void insert(int insertedValue)
     {
         this->insertedValue = insertedValue;
