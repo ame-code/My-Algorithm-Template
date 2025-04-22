@@ -7,5 +7,4 @@ output/
 # 临时测试文件
 test*
 TemplateSummury.py
-Template.md
-Template.pdf
+Template.*
