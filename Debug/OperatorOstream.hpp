@@ -2,6 +2,11 @@
 #ifndef OPERATOROSTREAM_HEADER
 #define OPERATOROSTREAM_HEADER
 
+// ========================
+// 重载输出流
+// 最后修改时间：2025-04-22
+// ========================
+
 #include<bits/stdc++.h>
 
 // 重载输出流声明部分

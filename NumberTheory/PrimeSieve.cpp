@@ -2,6 +2,11 @@
 #ifndef PRIMESIEVE_HEADER
 #define PRIMESIEVE_HEADER
 
+// ========================
+// 质数筛（埃氏筛）
+// 最后修改时间：2025-4-22
+// ========================
+
 #include<vector>
 
 namespace aleaf {
