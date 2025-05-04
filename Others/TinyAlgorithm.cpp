@@ -1,48 +1,87 @@
 #include<bits/stdc++.h>
 // using namespace std;
 namespace aleaf {
-    template<typename T>
-    void setMin(T &a, T &b) {
-        b = a = (a < b ? a : b);
+    auto& min(auto&& a) {
+        return a;
+    }
+    
+    auto& max(auto&& a) {
+        return a;
+    }
+    
+    auto& min(auto&& a, auto&& b, auto&&... args) {
+        return a < b ? min(a, args...) : min(b, args...);
+    }
+    
+    auto& max(auto&& a, auto&& b, auto&&... args) {
+        return a > b ? max(a, args...) : max(b, args...);
+    }
+    
+    auto& setMin(auto&& a) {
+        return a;
+    }
+    
+    auto& setMax(auto&& a) {
+        return a;
+    }
+    
+    auto& setMin(auto&& a, auto&& b, auto&&... args) {
+        return a < b ? b = setMin(a, args...) : a = setMin(b, args...);
+    }
+    
+    auto& setMax(auto&& a, auto&& b, auto&&... args) {
+        return a > b ? b = setMax(a, args...) : a = setMax(b, args...);
     }
 
-    template<typename T>
-    void setMax(T &a, T &b) {
-        b = a = (a > b ? a : b);
-    }
-    template<typename T>
-    T& min(T& a, T& b) {
-        return a < b ? a : b;
-    }
-
-    template<typename T>
-    T& max(T& a, T& b) {
-        return a > b ? a : b;
-    }
-
-    template<std::integral T>
-    T abs(const T &a) {
+    auto abs(const auto& a) {
         return (a ^ (~(a >> 31) + 1) + (a >> 31));
     }
 
-    template<typename T, typename... Args>
-    auto makeVector(size_t n, Args... args) {
-        if constexpr (sizeof...(args) == 1) {
-            return std::vector<T>(n, args...);
-        } else {
-            return std::vector<T>(n, makeVector<T>(args...));
-        }
+    template<std::integral T>
+    void swap(T& a, T& b) {
+        a ^= b ^= a ^= b;
     }
     
     template<typename T, typename... Args>
-    auto makeArray(size_t n, Args... args) {
+    auto vector(size_t n, Args... args) {
+        static_assert(sizeof...(args) >= 1);
         if constexpr (sizeof...(args) == 1) {
-            return std::array<T, n>();
+            return std::vector<T>(n, args...);
         } else {
-            return std::array<makeArray<T>, n>();
+            return std::vector(n, vector<T>(args...));
         }
     }
 
+    int sqrt(int n) {
+        double approx = std::sqrt(n);
+        int floor_val = static_cast<int>(approx);
+
+        while((floor_val + 1) * (floor_val + 1) <= n) ++floor_val;
+        while(floor_val * floor_val > n) --floor_val;
+
+        return floor_val;
+    }
+
+    long long sqrt(long long n) {
+        double approx = sqrt(n);
+        long long floor_val = static_cast<long long>(approx);
+       
+        while ((floor_val + 1) * (floor_val + 1) <= n) ++floor_val;
+        while (floor_val * floor_val > n) --floor_val;
+        
+        return floor_val;
+    }
+
+    unsigned long long sqrt(unsigned long long n) {
+        double approx = sqrt(n);
+        unsigned long long floor_val = static_cast<long long>(approx);
+        
+        while ((floor_val + 1) * (floor_val + 1) <= n) ++floor_val;
+        while (floor_val * floor_val > n) --floor_val;
+        
+        return floor_val;
+    }
+    
     // 没啥可读性版 :)
     bool LeapYear(int year) {
         return year % 4 == 0 && (year % 400 == 0 || !(year % 400 !=0 && year % 100 == 0));
