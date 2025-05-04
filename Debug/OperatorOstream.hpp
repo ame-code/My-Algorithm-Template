@@ -34,9 +34,27 @@ std::ostream& operator<<(std::ostream& os, std::priority_queue<args...> pq);
 // map映射输出
 template<typename T1, typename T2>
 std::ostream& operator<<(std::ostream& os, std::map<T1, T2> mp);
+// multimap映射输出
+template<typename T1, typename T2>
+std::ostream& operator<<(std::ostream& os, std::multimap<T1, T2> mp);
+// unordered_mp输出
+template<typename T1, typename T2>
+std::ostream& operator<<(std::ostream& os, std::unordered_map<T1, T2> mp);
+// unordered_multimap输出
+template<typename T1, typename T2>
+std::ostream& operator<<(std::ostream& os, std::unordered_multimap<T1, T2> mp);
 // set集合输出
 template<typename T>
 std::ostream& operator<<(std::ostream& os, std::set<T> st);
+// multiset集合输出
+template<typename T>
+std::ostream& operator<<(std::ostream& os, std::multiset<T> st);
+// unordered_set集合输出
+template<typename T>
+std::ostream& operator<<(std::ostream& os, std::unordered_set<T> st);
+// unordered_multiset集合输出
+template<typename T>
+std::ostream& operator<<(std::ostream& os, std::unordered_multiset<T> st);
 // debug多种变量输出
 
 // 重载输出流实现部分
@@ -106,9 +124,63 @@ std::ostream& operator<<(std::ostream& os, std::map<T1, T2> mp) {
     return os;
 }
 
+// multimap映射输出
+template<typename T1, typename T2>
+std::ostream& operator<<(std::ostream& os, std::multimap<T1, T2> mp) {
+    for(auto it = (os << '{', mp.begin()); it != mp.end(); it++, it == mp.end() ? os << "]" : os << ", ") {
+        os << std::format("{}: {}", it->first, it->second);
+    }
+    return os;
+}
+
+// unordered_mp输出
+template<typename T1, typename T2>
+std::ostream& operator<<(std::ostream& os, std::unordered_map<T1, T2> mp) {
+    for(auto it = (os << '{', mp.begin()); it != mp.end(); it++, it == mp.end() ? os << "]" : os << ", ") {
+        os << std::format("{}: {}", it->first, it->second);
+    }
+    return os;
+}
+
+// unordered_multimap输出
+template<typename T1, typename T2>
+std::ostream& operator<<(std::ostream& os, std::unordered_multimap<T1, T2> mp) {
+    for(auto it = (os << '{', mp.begin()); it != mp.end(); it++, it == mp.end() ? os << "]" : os << ", ") {
+        os << std::format("{}: {}", it->first, it->second);
+    }
+    return os;
+}
+
 // set集合输出
 template<typename T>
 std::ostream& operator<<(std::ostream& os, std::set<T> st) {
+    for(auto it = (os << '{', st.begin()); it != st.end(); it++, it == st.end() ? os << "]" : os << ", ") {
+        os << *it;
+    }
+    return os;
+}
+
+// multiset集合输出
+template<typename T>
+std::ostream& operator<<(std::ostream& os, std::multiset<T> st) {
+    for(auto it = (os << '{', st.begin()); it != st.end(); it++, it == st.end() ? os << "]" : os << ", ") {
+        os << *it;
+    }
+    return os;
+}
+
+// unordered_set集合输出
+template<typename T>
+std::ostream& operator<<(std::ostream& os, std::unordered_set<T> st) {
+    for(auto it = (os << '{', st.begin()); it != st.end(); it++, it == st.end() ? os << "]" : os << ", ") {
+        os << *it;
+    }
+    return os;
+}
+
+// unordered_multiset集合输出
+template<typename T>
+std::ostream& operator<<(std::ostream& os, std::unordered_multiset<T> st) {
     for(auto it = (os << '{', st.begin()); it != st.end(); it++, it == st.end() ? os << "]" : os << ", ") {
         os << *it;
     }
