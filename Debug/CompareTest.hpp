@@ -3,7 +3,7 @@
 #define COMPARETEST_HEADER
 
 #include<cstdlib>
-#include<chrono>
+#include<string>
 
 namespace aleaf {
     void compareTest(std::string ansCode, std::string myCode, std::string dataCode) {

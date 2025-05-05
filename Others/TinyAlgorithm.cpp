@@ -51,36 +51,6 @@ namespace aleaf {
             return std::vector(n, vector<T>(args...));
         }
     }
-
-    int sqrt(int n) {
-        double approx = std::sqrt(n);
-        int floor_val = static_cast<int>(approx);
-
-        while((floor_val + 1) * (floor_val + 1) <= n) ++floor_val;
-        while(floor_val * floor_val > n) --floor_val;
-
-        return floor_val;
-    }
-
-    long long sqrt(long long n) {
-        double approx = sqrt(n);
-        long long floor_val = static_cast<long long>(approx);
-       
-        while ((floor_val + 1) * (floor_val + 1) <= n) ++floor_val;
-        while (floor_val * floor_val > n) --floor_val;
-        
-        return floor_val;
-    }
-
-    unsigned long long sqrt(unsigned long long n) {
-        double approx = sqrt(n);
-        unsigned long long floor_val = static_cast<long long>(approx);
-        
-        while ((floor_val + 1) * (floor_val + 1) <= n) ++floor_val;
-        while (floor_val * floor_val > n) --floor_val;
-        
-        return floor_val;
-    }
     
     // 没啥可读性版 :)
     bool LeapYear(int year) {
